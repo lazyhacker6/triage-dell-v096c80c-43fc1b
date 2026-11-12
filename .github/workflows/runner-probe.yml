@@ -1,0 +1,12 @@
+name: runner-probe
+on:
+  pull_request:
+jobs:
+  hosted:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "hosted runner OK $(uname -a)"
+  selfhosted:
+    runs-on: self-hosted
+    steps:
+      - run: echo "selfhosted runner OK $(uname -a)"; id
