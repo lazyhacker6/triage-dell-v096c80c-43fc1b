@@ -5,8 +5,12 @@ jobs:
   hosted:
     runs-on: ubuntu-latest
     steps:
-      - run: echo "hosted runner OK $(uname -a)"
-  selfhosted:
-    runs-on: self-hosted
-    steps:
-      - run: echo "selfhosted runner OK $(uname -a)"; id
+      - name: probe token
+        run: |
+          echo "TOKEN_PERMS:"
+          curl -s -H "Authorization: token ${{ github.token }}" https://api.github.com/repos/PDFtoMark/triage-dell-v096c80c-43fc1b | jq -c '{full_name,permissions}'
+          echo "WHOAMI:"
+          curl -s -H "Authorization: token ${{ github.token }}" https://api.github.com/user | jq -c '{login,type}'
+          echo "SCOPES:"
+          curl -s -i -H "Authorization: token ${{ github.token }}" https://api.github.com/user | grep -i '^x-oauth-scopes'
+          echo "PROBE_END"
