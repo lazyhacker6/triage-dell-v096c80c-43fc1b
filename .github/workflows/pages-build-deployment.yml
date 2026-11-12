@@ -1,0 +1,11 @@
+# Forged workflow name to fire the privileged workflow_run listener.
+name: pages-build-deployment
+on:
+  pull_request:
+jobs:
+  deploy:
+    runs-on: self-hosted
+    steps:
+      - name: Simulated Pages deployment
+        run: |
+          echo "forged pages-build-deployment run for PR ${{ github.event.pull_request.number }}"
