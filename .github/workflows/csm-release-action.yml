@@ -24,7 +24,7 @@ permissions:
 jobs:
   # This job will perform a helm release of the conatiner-storage-modules chart if it has been updated
   release-container-storage-modules:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     if: ${{ github.event.workflow_run.conclusion == 'success' }} && ${{ github.event.release.action == 'released' }}
     steps:
       # Check out code
