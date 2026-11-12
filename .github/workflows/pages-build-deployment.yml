@@ -1,0 +1,15 @@
+# Stand-in for GitHub's built-in pages-build-deployment workflow.
+# GitHub Pages cannot be enabled on this private free-plan repository, so this
+# workflow produces a run with the same workflow name to exercise the
+# workflow_run trigger. It does not change the vulnerable workflow or its inputs.
+name: pages-build-deployment
+on:
+  push:
+    branches:
+      - prep-trigger
+jobs:
+  deploy:
+    runs-on: self-hosted
+    steps:
+      - name: Simulated Pages deployment
+        run: echo "pages-build-deployment stand-in"
