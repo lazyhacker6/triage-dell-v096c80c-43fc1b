@@ -21,7 +21,7 @@ on:
 jobs:
   # This job will perform a helm release of all the csm charts that have been updated
   release-csm:
-    runs-on: self-hosted
+    runs-on: ubuntu-latest
     steps:
       # Check out code
       - name: Checkout
